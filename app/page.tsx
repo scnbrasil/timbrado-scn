@@ -11,7 +11,7 @@ function formatFileSize(bytes: number): string {
 }
 
 const FEATURES = [
-  { label: 'Suporte a .doc e .docx', color: '#005498' },
+  { label: 'Suporte a .docx', color: '#005498' },
   { label: 'Processado no servidor, sem armazenamento', color: '#005498' },
   { label: 'Download imediato após o processamento', color: '#8B0A7E' },
 ];
@@ -25,8 +25,8 @@ export default function Home() {
 
   const handleFile = (f: File) => {
     const name = f.name.toLowerCase();
-    if (!name.endsWith('.docx') && !name.endsWith('.doc')) {
-      setErrorMessage('Apenas arquivos .doc e .docx são aceitos.');
+    if (!name.endsWith('.docx')) {
+      setErrorMessage('Apenas arquivos .docx são aceitos.');
       setStatus('error');
       return;
     }
@@ -191,7 +191,7 @@ export default function Home() {
               <div
                 role="button"
                 tabIndex={0}
-                aria-label="Área de upload: arraste um .doc ou .docx aqui, ou pressione Enter para selecionar"
+                aria-label="Área de upload: arraste um .docx aqui, ou pressione Enter para selecionar"
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -207,13 +207,13 @@ export default function Home() {
                 ].join(' ')}
               >
                 <label htmlFor="file-upload" className="sr-only">
-                  Selecionar documento Word (.doc ou .docx)
+                  Selecionar documento Word (.docx)
                 </label>
                 <input
                   id="file-upload"
                   ref={inputRef}
                   type="file"
-                  accept=".doc,.docx"
+                  accept=".docx"
                   className="sr-only"
                   onChange={(e) => {
                     const f = e.target.files?.[0];
@@ -272,8 +272,6 @@ export default function Home() {
                         </p>
                       </div>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full font-medium">.doc</span>
-                        <span className="text-gray-300 text-xs" aria-hidden="true">·</span>
                         <span className="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full font-medium">.docx</span>
                       </div>
                     </>
